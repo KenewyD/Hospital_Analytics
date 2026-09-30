@@ -1,32 +1,29 @@
 import streamlit as st
-from src.rag.chatbot import ask_hospital_ai
 
-st.set_page_config(page_title="Hospital Analytics", page_icon="🏥", layout="wide")
-st.title("🏥 Hospital Operational Intelligence Portal")
+st.set_page_config(
+    page_title="DIM Insight 360",
+    page_icon="🏥",
+    layout="wide"
+)
 
-# Tab 1: AI Data Assistant
-tab1, tab2 = st.tabs(["💬 Ask the Data AI", "🔮 Predict Provider Stay"])
+st.title("🏥 DIM Insight 360")
+st.subheader("Hospital Data Intelligence Platform")
 
-with tab1:
-    st.subheader("Talk to your Hospital Database")
-    st.caption("The assistant uses a local Ollama model when available; otherwise it shows a friendly fallback message.")
-    user_query = st.text_input(
-        "Ask a business question:", placeholder="e.g., What is the average billing amount by hospital?"
-    )
+st.success("✅ Application déployée avec succès")
 
-    if user_query:
-        with st.spinner("AI is analyzing records..."):
-            answer = ask_hospital_ai(user_query)
-            st.write("### 🤖 Response:")
-            if "not ready" in answer.lower() or "not reachable" in answer.lower():
-                st.warning(answer)
-            else:
-                st.info(answer)
-    else:
-        st.info("Enter a question to start the AI assistant.")
+st.write(
+    """
+    Plateforme démonstratrice d'analyse hospitalière,
+    de pilotage DIM, de qualité des données et
+    d'intelligence artificielle.
+    """
+)
 
-with tab2:
-    st.subheader("Predict Patient Stay Length")
-    st.info("Prediction features will be added here soon.")
-    # Add input fields (Age, Medical Condition dropdown, etc.)
-    # Load your provider_model.pkl file to show predictions
+col1, col2, col3, col4 = st.columns(4)
+
+col1.metric("Séjours analysés", "25 430")
+col2.metric("DMS", "5.8 jours")
+col3.metric("Taux d'occupation", "83 %")
+col4.metric("Qualité des données", "96.4 %")
+
+st.info("Données synthétiques — projet démonstrateur.")
